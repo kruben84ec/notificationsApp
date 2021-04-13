@@ -2,8 +2,16 @@ from NotificationApp import NotificationApp
 from db import client
 from fastapi import FastAPI, Body, APIRouter
 from fastapi.encoders import jsonable_encoder
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 # Add a new notification into to the database
 async def add_notication(notification_data: dict) -> dict:
