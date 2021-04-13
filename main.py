@@ -32,13 +32,7 @@ def notification_helper(notification_row) -> dict:
 
 @app.get("/")
 async  def index():
-    notification_list = []
-    database = client.habitanto_data
-    notification_collection = database.get_collection("NotificationApp")
-    async for notification_row in notification_collection.find().limit(1000):
-        notification_list.append(notification_helper(notification_row))
-
-    return notification_list
+    return {"message": "Deploy FastApi"}
 
 @app.get("/notification/list/{limit}")
 async def notification(limit:int):
